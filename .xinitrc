@@ -8,4 +8,6 @@
 # exec startkde
 # exec startxfce4
 # ...or the Window Manager of your choice
+xsetroot -solid '#80a0af'
+xsetroot -cursor_name left_ptr
 exec xmonad
