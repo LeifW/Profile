@@ -7,4 +7,3 @@ URxvt.font: xft:Terminus:pixelsize=14:antialias=false
 URxvt.boldFont: xft:Terminus:bold:pixelsize=14:antialias=false
 URxvt.perl-ext-common: default,matcher
 URxvt*urlLauncher:         uzbl-browser
-URxvt.colorUL: #86a2be
