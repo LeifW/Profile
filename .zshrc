@@ -30,3 +30,4 @@ alias j='jfe -c'
 export PATH=$PATH:$HOME/bin
 export EXIST_HOME=$HOME/eXist
 export RPROMPT=%~
+export EDITOR=vim
