@@ -1,3 +1,12 @@
 [user]
 	name = Leif Warner
 	email = abimelech@gmail.com
+[color]
+	sh = auto
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
+	ui = true
+[branch]
+	autosetupmerge = true
