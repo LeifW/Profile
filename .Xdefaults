@@ -3,8 +3,11 @@ URxvt.background: black
 URxvt.foreground: white
 URxvt.cursorColor: green
 URxvt.underlineColor: yellow
+URxvt.scrollBar: false
 URxvt.font: xft:Terminus:pixelsize=14:antialias=false
 URxvt.boldFont: xft:Terminus:bold:pixelsize=14:antialias=false
-#URxvt.perl-ext-common: default,matcher
-#URxvt*urlLauncher:         uzbl-browser
 #URxvt.colorUL: #86a2be
+URxvt.urlLauncher: chromium
+URxvt.matcher.button: 1
+URxvt.perl-ext-common: matcher,readline,url-select
+URxvt.keysym.M-u:       perl:url-select:select_next
