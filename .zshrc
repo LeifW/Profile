@@ -24,10 +24,20 @@ setopt extendedglob nomatch notify
 unsetopt appendhistory beep
 bindkey -v
 # End of lines configured by zsh-newuser-install
+eval "`dircolors DIR_COLORS`"
+# If xterm or rxvt, set the title to dir
+case "$TERM" in
+xterm*|rxvt*)
+  chpwd () { print -Pn "\033]0;%n@%m: %~\007" }
+	;;
+*)
+	;;
+esac
 
-alias ls='ls -F --color'
-alias j='jfe -c'
-export PATH=$PATH:$HOME/bin
-export EXIST_HOME=$HOME/eXist
+export PS1=$'%{\e[0;36m%}%m%{\e[0m%}|%T%# '
 export RPROMPT=%~
+alias ls='ls -F --color'
+alias j='j7 -c'
+export PATH=$PATH:$HOME/bin
 export EDITOR=vim
+export ARCH_HASKELL='Arch Haskell Team <arch-haskell@haskell.org>'
