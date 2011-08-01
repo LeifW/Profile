@@ -34,8 +34,8 @@ xterm*|rxvt*)
 	;;
 esac
 
-export PS1=$'%{\e[0;36m%}%m%{\e[0m%}|%T%# '
-export RPROMPT=%~
+export PS1="%{$fg[cyan]%}%m%{$reset_color%}%# "
+export RPROMPT=%~%{$fg[cyan]%}%t%{$reset_color%}
 alias ls='ls -F --color'
 alias j='j7 -c'
 export PATH=$PATH:$HOME/bin
