@@ -18,7 +18,7 @@ colors
 # End of lines added by compinstall
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=500
+HISTSIZE=1000
 SAVEHIST=1000
 setopt extendedglob nomatch notify
 unsetopt appendhistory beep
@@ -38,6 +38,9 @@ export PS1="%{$fg[cyan]%}%m%{$reset_color%}%# "
 export RPROMPT=%~%{$fg[cyan]%}%t%{$reset_color%}
 alias ls='ls -F --color'
 alias j='j7 -c'
-export PATH=$PATH:$HOME/bin
+alias ssh='TERM=rxvt-unicode ssh'
+alias scaladocs='chromium /usr/share/doc/scala/index.html'
+export PATH=$PATH:$HOME/bin:$HOME/.gem/ruby/1.9.1/bin
 export EDITOR=vim
 export ARCH_HASKELL='Arch Haskell Team <arch-haskell@haskell.org>'
+export IDEA_JDK=/opt/java6

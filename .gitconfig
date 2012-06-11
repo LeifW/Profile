@@ -10,3 +10,7 @@
 	ui = true
 [branch]
 	autosetupmerge = true
+[merge]
+	tool = p4merge
+[push]
+	default = current
