@@ -8,6 +8,9 @@ import XMonad.Prompt.Window (windowPromptGoto, windowPromptBring)
 import XMonad.Actions.FindEmptyWorkspace (viewEmptyWorkspace, tagToEmptyWorkspace)
 import XMonad.Prompt.Ssh (sshPrompt)
 import XMonad.Actions.Volume (raiseVolumeChannels, lowerVolumeChannels, toggleMute, osdCat)
+import XMonad.Prompt.MPD (addAndPlay)
+import Network.MPD (withMPD, stop, previous, next, Metadata (..))
+import Network.MPD.Commands.Extensions (toggle)
 import XMonad.Util.Run (safeSpawnProg)
 import Graphics.X11.ExtraTypes
 import XMonad.Hooks.SetWMName
@@ -15,6 +18,7 @@ import XMonad.Actions.WindowNavigation
 import XMonad.Actions.GridSelect
 import Control.Monad (void)
 
+myMask :: KeyMask
 myMask = mod4Mask
 
 myConfig = defaultConfig {
@@ -39,19 +43,26 @@ myConfig = defaultConfig {
              ((myMask .|. shiftMask , xK_g), windowPromptBring defaultXPConfig ) ,
              ((myMask, xK_f), goToSelected defaultGSConfig ) ,
              ((myMask, xK_m), viewEmptyWorkspace) ,
-             ((myMask .|. shiftMask, xK_m), tagToEmptyWorkspace)
+             ((myMask .|. shiftMask, xK_m), tagToEmptyWorkspace) ,
+             ((myMask, xK_a), addAndPlay withMPD defaultXPConfig [Artist, Title]) ,
+             ((0, xF86XK_AudioPlay), mpd toggle ) ,
+             ((0, xF86XK_AudioStop), mpd stop ) ,
+             ((0, xF86XK_AudioPrev), mpd previous ) ,
+             ((0, xF86XK_AudioNext), mpd next )
            ]
   where
     myLayout = tall ||| Mirror tall ||| Full
       where tall = ResizableTall { _nmaster = 1,  _delta = 3/100, _frac = 1/2, _slaves = [] }
     vol action n = do
       v <- action ["Master"] n 
-      osdCat v (\_->"")
-    --vol action n = action ["Master"] n >>= flip osdCat (\_->"")
+      osdCat v (const "")
+    mpd = io . void . withMPD
 
-
---main = xmonad =<< statusBar "xmobar" statusBarSettings toggleStrutsKey myConfig
-main = xmonad =<< withWindowNavigation (xK_Up, xK_Left, xK_Down, xK_Right) =<< statusBar "xmobar" statusBarSettings toggleStrutsKey myConfig
-  where
-    statusBarSettings = xmobarPP { ppTitle = xmobarColor "green" ""}
-    toggleStrutsKey _ = (myMask, xK_s)
+main :: IO ()
+main =
+  statusBar "xmobar" statusBarSettings toggleStrutsKey myConfig >>=
+  withWindowNavigation (xK_Up, xK_Left, xK_Down, xK_Right) >>=
+  xmonad
+    where
+      statusBarSettings = xmobarPP { ppTitle = xmobarColor "green" ""}
+      toggleStrutsKey _ = (myMask, xK_s)
