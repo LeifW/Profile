@@ -1,0 +1,1 @@
+pacman -S --needed gvim zsh git xmobar dmenu terminus-font haskell-xmonad-contrib rxvt-unicode urxvt-perls
