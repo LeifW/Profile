@@ -9,5 +9,9 @@ URxvt.boldFont: xft:Terminus:bold:pixelsize=14:antialias=false
 #URxvt.colorUL: #86a2be
 URxvt.urlLauncher: chromium
 URxvt.matcher.button: 1
-URxvt.perl-ext-common: matcher,readline,url-select
-URxvt.keysym.M-u:       perl:url-select:select_next
+URxvt.perl-ext-common:      default,clipboard,url-select,keyboard-select
+URxvt.url-select.launcher:  chromium
+URxvt.url-select.underline: true
+URxvt.keysym.M-u:           perl:url-select:select_next
+URxvt.keysym.M-Escape:      perl:keyboard-select:activate
+URxvt.keysym.M-s:           perl:keyboard-select:search
