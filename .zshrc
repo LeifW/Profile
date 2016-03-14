@@ -34,13 +34,7 @@ xterm*|rxvt*)
 	;;
 esac
 
-export PS1="%{$fg[cyan]%}%m%{$reset_color%}%# "
-export RPROMPT=%~%{$fg[cyan]%}%t%{$reset_color%}
+export PROMPT="%F{cyan}%m%f%#%(?..:%K{red}%?%k) "
+export RPROMPT=%~%F{cyan}%T%f
 alias ls='ls -F --color'
 alias j='j7 -c'
-alias ssh='TERM=rxvt-unicode ssh'
-alias scaladocs='chromium /usr/share/doc/scala/index.html'
-export PATH=$PATH:$HOME/bin:$HOME/.gem/ruby/1.9.1/bin
-export EDITOR=vim
-export ARCH_HASKELL='Arch Haskell Team <arch-haskell@haskell.org>'
-export IDEA_JDK=/opt/java6
