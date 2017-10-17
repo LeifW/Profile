@@ -2,6 +2,7 @@ import XMonad
 import XMonad.Util.EZConfig (additionalKeys)
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
+import XMonad.Hooks.UrgencyHook
 import XMonad.Layout.NoBorders (smartBorders)
 import XMonad.Layout.ResizableTile
 import XMonad.Prompt (autoComplete)
@@ -12,6 +13,8 @@ import XMonad.Util.Run (safeSpawn)
 import Graphics.X11.ExtraTypes
 import XMonad.Actions.Navigation2D
 import XMonad.Actions.GridSelect
+import XMonad.Actions.Volume (raiseVolume, lowerVolume, toggleMute, osdCat, defaultOSDOpts)
+import Control.Monad (void)
 
 winKey :: KeyMask
 winKey = mod4Mask
@@ -32,14 +35,21 @@ keyBindings =
   win xK_g |=> windowPromptGoto def { autoComplete = Just 500000 } :
   winShift xK_g |=> windowPromptBring def :
   win xK_f |=> goToSelected def :
+  winShift xK_f |=> focusUrgent :
   win xK_m |=> viewEmptyWorkspace :
   winShift xK_m |=> tagToEmptyWorkspace :
   plain xF86XK_MonBrightnessUp |=> safeSpawn "xbacklight" ["-inc", "1"] :
   plain xF86XK_MonBrightnessDown |=> safeSpawn "xbacklight" ["-dec", "1"] :
+  plain xF86XK_AudioLowerVolume |=> vol lowerVolume :
+  plain xF86XK_AudioRaiseVolume |=> vol raiseVolume :
+  plain xF86XK_AudioMute |=> void toggleMute :
   []
 
+vol :: MonadIO m => (Double -> m Double) -> m ()
+vol action = void $ action 2.0
+
 myConfig =
-  ewmh $ def {
+  navSetting $ withUrgencyHook (BorderUrgencyHook "#FFD700") $ ewmh $ def {
     terminal = "urxvtc", 
     modMask = winKey,
     layoutHook = smartBorders myLayout,
@@ -63,6 +73,4 @@ navSetting =
     False
 
 main :: IO ()
-main = do
-  configWithXmobar <- xmobar myConfig
-  xmonad $ navSetting configWithXmobar
+main = xmobar myConfig >>= xmonad
