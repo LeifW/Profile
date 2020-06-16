@@ -1,18 +1,20 @@
-Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
+Config { font = "xft:Sans Serif-10:normal"
        , bgColor = "black"
        , fgColor = "grey"
        , position = TopW L 100
        , commands = [ Run Weather "KPDX" ["-t"," <tempF>F","-L","64","-H","77","--normal","green","--high","red","--low","lightblue"] 36000
                     , Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
                     , Run Memory ["-t","Mem: <usedratio>%"] 10
-                    , Run Wireless "wlo1" [] 10
-                    , Run BatteryP ["BAT0"] ["-t", "AC: <acstatus> <left>%", "-L","50","-H","75","--high","green","--normal","yellow", "--low", "red"] 10
+                    , Run Wireless "wlan0" [] 10
+                    , Run Volume "default" "Master" ["--template", "<volume> <volumebar> <status>" ] 10
+                    , Run BatteryP ["BAT1"] ["-t", "AC: <acstatus> <left>%", "-L","50","-H","75","--high","green","--normal","yellow", "--low", "red"] 10
                     , Run Swap [] 10
+                    , Run Brightness ["--", "-D", "intel_backlight"] 10
                     , Run Date "%a %b %_d %l:%M" "date" 10
                     , Run StdinReader
                     ]
        , sepChar = "%"
        , lowerOnStart = True
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %wlo1wi% | %battery% | %cpu% | %memory% * %swap%   <fc=#ee9a00>%date%</fc> | %KPDX%"
+       , template = "%StdinReader% }{ <fc=#00ffff>%wlan0wi%</fc> | %default:Master%| ☀<fc=#ed820e>%bright%</fc> | %battery% | %cpu% | %memory% * %swap%  <fc=#ee9a00>%date%</fc> | %KPDX%"
        }
