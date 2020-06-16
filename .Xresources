@@ -1,0 +1,39 @@
+Xft.autohint: 0
+Xft.lcdfilter: lcddefault
+Xft.hintstyle: hintslight
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+
+URxvt.background:       #000000
+URxvt.foreground:       gray75
+URxvt.color3:           DarkGoldenrod
+URxvt.color4:           RoyalBlue
+URxvt.color11:          LightGoldenrod
+URxvt.color12:          LightSteelBlue
+URxvt.color7:           gray75
+URxvt.colorBD:          #ffffff
+URxvt.colorUL:          LightSlateGrey
+URxvt.colorIT:          SteelBlue
+URxvt.cursorColor:      grey90
+URxvt.highlightColor:   grey25
+
+URxvt.buffered: true
+URxvt.background: black
+URxvt.foreground: white
+URxvt.cursorColor: green
+URxvt.underlineColor: yellow
+URxvt.scrollBar: false
+URxvt.font: xft:xos4 Terminus:pixelsize=18:antialias=true;autohint=true
+URxvt.boldFont: xft:xos4 Terminus:bold:pixelsize=18:antialias=true;autohint=true
+! URxvt.colorUL: #86a2be
+URxvt.urlLauncher: chromium
+URxvt.matcher.button: 1
+URxvt.perl-ext-common:      default,clipboard,url-select,keyboard-select
+URxvt.url-select.launcher:  chromium
+URxvt.url-select.underline: true
+URxvt.keysym.M-u:           perl:url-select:select_next
+URxvt.keysym.M-Escape:      perl:keyboard-select:activate
+URxvt.keysym.M-s:           perl:keyboard-select:search
+URxvt.urgentOnBell:         true
+URxvt.iconFile:    /usr/share/icons/Adwaita/16x16/apps/utilities-terminal.png
