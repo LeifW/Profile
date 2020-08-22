@@ -24,7 +24,7 @@ setopt extendedglob nomatch notify
 unsetopt appendhistory beep
 bindkey -v
 # End of lines configured by zsh-newuser-install
-eval "`dircolors DIR_COLORS`"
+eval "`dircolors $HOME/DIR_COLORS`"
 # If xterm or rxvt, set the title to dir
 case "$TERM" in
 xterm*|rxvt*)
@@ -35,6 +35,8 @@ xterm*|rxvt*)
 esac
 
 export PROMPT="%F{cyan}%m%f%#%(?..:%K{red}%?%k) "
-export RPROMPT=%~%F{cyan}%T%f
+export RPROMPT='%~ %F{cyan}%T%f'
 alias ls='ls -F --color'
 alias j='j7 -c'
+alias start='sudo systemctl start'
+alias stop='sudo systemctl stop'
